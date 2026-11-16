@@ -2,14 +2,6 @@
 
 A small strip above the message box in Claude Code that answers one question when you click into a session: **where was I?**
 
-This is what it would look like:
-
-```
-my-shop-site · branch: new-checkout
-Last: The checkout page now remembers the cart after a refresh. Tests pass.
-Next: You try a test purchase, then decide whether to put it live.
-```
-
 - **Line 1** is the folder the session is working in, and the branch if there is one. A session with no project folder says `No folder`.
 - **Last** is what just happened, in plain words.
 - **Next** is what is waiting, or who has to act.
