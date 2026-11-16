@@ -1,6 +1,6 @@
 {
   "name": "where-was-i",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "A strip above the message box that tells you where you are and where you left off: folder, branch, what just happened, what is next",
   "types": "./types/index.d.ts",
   "license": "MIT",

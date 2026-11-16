@@ -1,5 +1,5 @@
 import type { SessionMessage } from 'claude-code'
-import type { Summary } from '../types'
+import type { Place, Summary } from '../types'
 
 export const MAX_LINE = 240
 export const MAX_INPUT = 3000
@@ -92,3 +92,52 @@ export function buildPrompt(user: string, assistant: string): string {
     a || '(nothing yet)',
   ].join('\n')
 }
+
+export const MAX_PLACES = 12
+const LINK_ID = /^local_[A-Za-z0-9-]{1,64}$/
+
+/** The desktop app's id for a chat, only in the form its links accept. */
+export function linkId(value: unknown): string | undefined {
+  return typeof value === 'string' && LINK_ID.test(value) ? value : undefined
+}
+
+/** The address the desktop app opens a chat by. */
+export function chatUrl(link: string): string {
+  return `claude://code/continue?session=${link}`
+}
+
+/** How long ago, in everyday words. */
+export function ago(now: number, at: number): string {
+  const min = Math.floor(Math.max(0, now - at) / 60_000)
+  if (min < 1) return 'just now'
+  if (min < 60) return `${min} min ago`
+  const hours = Math.floor(min / 60)
+  if (hours < 24) return hours === 1 ? '1 hour ago' : `${hours} hours ago`
+  const days = Math.floor(hours / 24)
+  return days === 1 ? 'yesterday' : `${days} days ago`
+}
+
+/** Stored summaries as panel rows, newest first; one saved before folders were kept is left out. */
+export function placesFrom(entries: readonly (readonly [string, unknown])[]): Place[] {
+  const out: Place[] = []
+  for (const [id, raw] of entries) {
+    if (!raw || typeof raw !== 'object') continue
+    const v = raw as Record<string, unknown>
+    if (typeof v.last !== 'string' || typeof v.folder !== 'string' || typeof v.at !== 'number') continue
+    const place: Place = { id, folder: v.folder, last: v.last, at: v.at }
+    if (typeof v.branch === 'string') place.branch = v.branch
+    if (typeof v.next === 'string') place.next = v.next
+    const link = linkId(v.link)
+    if (link) place.link = link
+    out.push(place)
+  }
+  return out.sort((a, b) => b.at - a.at).slice(0, MAX_PLACES)
+}
+
+/** Shown in the strip the first time the mod loads on a computer, until the person dismisses it. */
+export const WELCOME_TITLE = 'Hey, thanks for downloading this mod!'
+export const WELCOME_COMMANDS = [
+  { name: '/where', what: 'See your recent chats and jump between them.' },
+  { name: '/reload-plugins', what: 'Run once in any chat that was already open.' },
+] as const
+export const WELCOME_NOTE = 'Chats join the /where list after their next reply.'
