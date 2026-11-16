@@ -6,8 +6,8 @@ export const MAX_INPUT = 3000
 
 /** The last path segment; `No folder` for the app's scratch workspaces. */
 export function folderOf(cwd: string): string {
-  if (cwd.includes('/scratch-workspaces/')) return 'No folder'
-  const parts = cwd.split('/').filter(Boolean)
+  const parts = cwd.split(/[\\/]/).filter(Boolean)
+  if (parts.slice(0, -1).includes('scratch-workspaces')) return 'No folder'
   return parts.at(-1) ?? '/'
 }
 
