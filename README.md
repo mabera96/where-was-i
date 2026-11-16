@@ -8,8 +8,7 @@ A small strip above the message box in Claude Code that answers one question whe
 
 <img width="772" height="196" alt="image" src="https://github.com/user-attachments/assets/3ee51a97-b5c4-4b24-8cf3-c54e3d942fd5" />
 
-It is made for people who direct Claude to build things. No setup, no settings, nothing to learn.
-
+It is made for people who direct Claude to build things. No long setup or complicated settings.
 ## Install
 
 You need Claude Code 2.1.275 or later.
@@ -38,6 +37,30 @@ In the Claude desktop app, where `/plugin` does not run: click **+** next to the
 
 Once installed, the strip shows in every session you start, including in the desktop app.
 
+## See all your chats: `/where`
+
+Type `/where` in any chat to open a side panel listing your recent chats, newest first. Each one shows its folder, branch, how long ago it was active, and what happened and what is next there.
+
+- **Open** takes you to that chat. This works in the Claude desktop app. It was built and tested on a Mac; on Windows it is untested.
+- **Hide** takes a chat off the list. It does not delete the chat. If you use that chat again, it comes back.
+- The chat you are in is shaded blue.
+- **The panel follows you.** Once it is open, it opens in your other open chats too, and closing it anywhere closes it everywhere.
+
+<img width="501" height="717" alt="image" src="https://github.com/user-attachments/assets/4d07d53a-a6e0-4033-8866-38fd720f050e" />
+
+
+Three things to know:
+
+- A chat appears in the panel after its next reply with this version installed. The list fills in as you use your chats.
+- The strip and the panel only show in a chat that is awake. If you click into a chat that has been idle and see neither, they appear once you send a message.
+- A chat that was already open when you installed or updated the mod needs `/reload-plugins` once.
+
+The first time the mod loads, the strip shows a short welcome with these commands. Press **Got it** and it never shows again.
+
+## Change the color
+
+The folder name and labels use the app's own amber, which adjusts itself for light and dark themes. To use a color of your own, change the `AMBER` value in `hooks/register.tsx` to a color such as `'#D9A21B'`, then run `/reload-plugins`. The panel's shades are next to it: `HERE` is the chat you are in, and `STRIPE` is the alternating band.
+
 ## What you should know before installing
 
 - **It uses a little of your Claude usage.** After each turn, the mod asks a small, fast model (Haiku) to write the two summary lines. That call counts toward your own usage like anything else you do in Claude Code.
@@ -53,27 +76,6 @@ Once installed, the strip shows in every session you start, including in the des
 - If the summary cannot be written, `Last:` shows the first line of Claude's last reply. The strip never shows an error.
 - If the folder is not under version control, the branch is simply not shown.
 - A brand-new session shows the folder line only.
-
-## See all your chats: `/where`
-
-Type `/where` in any chat to open a side panel listing your recent chats, newest first. Each one shows its folder, branch, how long ago it was active, and what happened and what is next there.
-
-- **Open** takes you to that chat. This works in the Claude desktop app. It was built and tested on a Mac; on Windows it is untested.
-- **Hide** takes a chat off the list. It does not delete the chat. If you use that chat again, it comes back.
-- The chat you are in is shaded blue.
-- **The panel follows you.** Once it is open, it opens in your other open chats too, and closing it anywhere closes it everywhere.
-
-Three things to know:
-
-- A chat appears in the panel after its next reply with this version installed. The list fills in as you use your chats.
-- The strip and the panel only show in a chat that is awake. If you click into a chat that has been idle and see neither, they appear once you send a message.
-- A chat that was already open when you installed or updated the mod needs `/reload-plugins` once.
-
-The first time the mod loads, the strip shows a short welcome with these commands. Press **Got it** and it never shows again.
-
-## Change the color
-
-The folder name and labels use the app's own amber, which adjusts itself for light and dark themes. To use a color of your own, change the `AMBER` value in `hooks/register.tsx` to a color such as `'#D9A21B'`, then run `/reload-plugins`. The panel's shades are next to it: `HERE` is the chat you are in, and `STRIPE` is the alternating band.
 
 ## Remove it
 
