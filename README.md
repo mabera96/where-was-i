@@ -14,6 +14,12 @@ It is made for people who direct Claude to build things. No setup, no settings, 
 
 You need Claude Code 2.1.275 or later.
 
+Type this in a Claude Code session:
+
+```
+Install this claude mod: https://github.com/mabera96/where-was-i?tab=readme-ov-file
+```
+
 At the prompt of a Claude Code session in a terminal:
 
 ```
