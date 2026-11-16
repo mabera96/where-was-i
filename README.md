@@ -73,7 +73,7 @@ The first time the mod loads, the strip shows a short welcome with these command
 
 ## Change the color
 
-The folder name and the two labels in the strip are a burnt yellow. To change it, edit the `YELLOW` value in `hooks/register.tsx`, then run `/reload-plugins`. The panel's colors are next to it: `HERE` is the shade of the chat you are in, and `STRIPE` is the alternating band.
+The folder name and labels use the app's own amber, which adjusts itself for light and dark themes. To use a color of your own, change the `AMBER` value in `hooks/register.tsx` to a color such as `'#D9A21B'`, then run `/reload-plugins`. The panel's shades are next to it: `HERE` is the chat you are in, and `STRIPE` is the alternating band.
 
 ## Remove it
 

@@ -135,13 +135,11 @@ async function refreshHeader($: EngineInterface) {
   await update($, header, () => (branch ? { folder, branch } : { folder }))
 }
 
-/** The folder name and the two labels; everything else keeps the app's own text colors. */
-const YELLOW = '#D9A21B'
 /** The row of the chat you are in: a faint wash of Carolina blue, see-through so it reads on dark and light themes. */
 const HERE = 'rgba(75,156,211,0.16)'
 /** Every other row in the panel, so the list reads as stripes on any theme. */
 const STRIPE = 'rgba(128,128,128,0.1)'
-/** Panel labels: the app's own amber, which it adjusts for light and dark themes. */
+/** The folder name and labels, in the strip and the panel: the app's own amber, which it adjusts for light and dark themes. */
 const AMBER = 'warning'
 /** About two lines of the panel; the strip in that chat has the full text. */
 const PANEL_LINE = 130
@@ -302,11 +300,11 @@ export const register: Register = on => {
       <Box flexDirection="column">
         {hello && (
           <Box flexDirection="column" marginBottom={1} gap={1}>
-            <Text bold color={YELLOW} wrap="wrap">{WELCOME_TITLE}</Text>
+            <Text bold color={AMBER} wrap="wrap">{WELCOME_TITLE}</Text>
             <Box flexDirection="column">
               {WELCOME_COMMANDS.map(c => (
                 <Text wrap="wrap">
-                  <Text bold color={YELLOW}>{c.name}</Text>
+                  <Text bold color={AMBER}>{c.name}</Text>
                   <Text>{`   ${c.what}`}</Text>
                 </Text>
               ))}
@@ -317,19 +315,19 @@ export const register: Register = on => {
         )}
         {top && (
           <Text wrap="truncate-end">
-            <Text bold color={YELLOW}>{top.folder}</Text>
+            <Text bold color={AMBER}>{top.folder}</Text>
             {top.branch ? <Text dimColor>{` · branch: ${top.branch}`}</Text> : null}
           </Text>
         )}
         {top && lines && (
           <Text wrap="wrap">
-            <Text color={YELLOW}>Last: </Text>
+            <Text color={AMBER}>Last: </Text>
             <Text>{lines.last}</Text>
           </Text>
         )}
         {top && lines?.next && (
           <Text wrap="wrap">
-            <Text color={YELLOW}>Next: </Text>
+            <Text color={AMBER}>Next: </Text>
             <Text>{lines.next}</Text>
           </Text>
         )}
