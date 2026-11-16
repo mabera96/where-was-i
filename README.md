@@ -12,7 +12,7 @@ Next: You try a test purchase, then decide whether to put it live.
 - **Last** is what just happened, in plain words.
 - **Next** is what is waiting, or who has to act.
 
-It is made for people who direct Claude to build things and never took a software class. No setup, no settings, nothing to learn.
+It is made for people who direct Claude to build things. No setup, no settings, nothing to learn.
 
 ## Install
 
